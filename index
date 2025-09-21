@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đảo Ước Mơ 夢想島 - Cùng bạn kiến tạo tương lai</title>
+    <style>
+        :root {
+            /* New Color Palette from Business Card */
+            --primary-color: #A9D4E2; /* A lighter, soft blue for accents */
+            --dark-blue: #3A4A63;   /* The main dark blue from the card */
+            --text-color: #333;
+            --text-light: #F0F4F8;
+            --bg-color: #FFFFFF;
+            --light-gray: #f8f9fa;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Times New Roman', 'Roboto', 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .main-header {
+            background-color: var(--bg-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--dark-blue);
+            text-decoration: none;
+        }
+        .logo span {
+            font-weight: 500;
+            opacity: 0.7;
+        }
+
+        .main-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .main-nav li {
+            margin-left: 30px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--dark-blue);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+        
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .main-nav a:hover::after, .main-nav a.active::after {
+            width: 100%;
+            left: 0;
+        }
+
+
+        .lang-switcher {
+            position: relative;
+        }
+
+        .lang-switcher .selected-lang {
+            cursor: pointer;
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            color: var(--dark-blue);
+        }
+        .lang-switcher .selected-lang::after {
+            content: '▼';
+            font-size: 0.7em;
+            margin-left: 5px;
+        }
+
+        .lang-switcher ul {
+            display: none;
+            position: absolute;
+            top: 120%;
+            right: 0;
+            background-color: var(--bg-color);
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px 0;
+            margin: 0;
+            list-style: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .lang-switcher:hover ul {
+            display: block;
+        }
+
+        .lang-switcher ul li a {
+            display: block;
+            padding: 8px 15px;
+            white-space: nowrap;
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--dark-blue);
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            font-weight: 900;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: var(--dark-blue);
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(169, 212, 226, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #c1e0eb;
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 100px 0;
+        }
+        .section-light {
+            background-color: #F0F4F8;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.8em;
+            font-weight: 900;
+            color: var(--dark-blue);
+        }
+        .section-title span {
+            display: block;
+            font-size: 0.5em;
+            color: #777;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .service-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #eee;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(58, 74, 99, 0.15);
+        }
+        .service-card h3 {
+            color: var(--dark-blue);
+            margin-top: 0;
+            font-size: 1.5em;
+            font-weight: 700;
+        }
+
+        /* Partners */
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            align-items: center;
+        }
+        .partner-logo {
+            padding: 20px;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            filter: grayscale(100%);
+            transition: all 0.4s ease;
+            opacity: 0.6;
+        }
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        .partner-logo svg {
+            width: 100%;
+            height: auto;
+        }
+
+        /* Tax Calculator & FAQ */
+        .tools-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .tool-box {
+            background-color: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+             border: 1px solid #eee;
+        }
+        
+        .tool-box h3 {
+            margin-top: 0;
+            color: var(--dark-blue);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            font-size: 1.6em;
+        }
+
+        .tax-calc-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 10px 15px;
+            margin-bottom: 20px;
+        }
+
+        .tax-calc-grid label {
+            font-weight: 500;
+        }
+
+        .tax-calc-grid input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            text-align: right;
+            font-size: 1.1em;
+            background-color: var(--light-gray);
+        }
+
+        .tax-calc-grid span {
+            font-weight: 500;
+        }
+
+        #tax-results {
+            margin-top: 20px;
+            background-color: #F0F4F8;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        #tax-results p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+        #tax-results strong {
+            color: var(--dark-blue);
+        }
+        .disclaimer {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 15px;
+            line-height: 1.5;
+        }
+        
+        .faq-categories button {
+            background: none;
+            border: 1px solid var(--primary-color);
+            color: var(--dark-blue);
+            padding: 10px 20px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        
+        .faq-categories button.active, .faq-categories button:hover {
+            background-color: var(--dark-blue);
+            color: white;
+            border-color: var(--dark-blue);
+        }
+        
+        .faq-item {
+            margin-top: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: 700;
+            cursor: pointer;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            font-weight: 700;
+            color: var(--dark-blue);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+            padding-left: 15px;
+            border-left: 3px solid var(--primary-color);
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 300px; 
+            margin-top: 10px;
+        }
+        
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .contact-info h3 {
+            font-size: 2em;
+            color: var(--dark-blue);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .contact-info p {
+            margin-bottom: 25px;
+            font-size: 1.1em;
+        }
+        .contact-info ul {
+            list-style: none;
+            padding: 0;
+        }
+        .contact-info li {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        .contact-form iframe {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 600px;
+            border: 1px solid #ddd;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--dark-blue);
+            color: var(--text-light);
+            padding: 60px 0 40px 0;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+        }
+        .footer-col h4 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 1.2em;
+        }
+        .footer-col p, .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .footer-col a:hover {
+            color: white;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #556a88;
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        .footer-bottom a {
+            color: #ccc;
+            text-decoration: underline;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 800px;
+            border-radius: 15px;
+            position: relative;
+            animation: slideIn 0.3s;
+        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideIn { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .modal-close {
+            color: #aaa;
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-body {
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        .modal-body h4 {
+            color: var(--dark-blue);
+            font-size: 1.4em;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            .tools-container, .footer-grid, .contact-container {
+                grid-template-columns: 1fr;
+            }
+            .main-nav {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            }
+            .main-nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .main-nav li {
+                margin: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .main-nav a {
+                display: block;
+                padding: 15px;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .main-nav.active {
+                display: block;
+            }
+            .lang-switcher { margin-left: auto; margin-right: 20px;}
+            
+            .hero h1 { font-size: 2.8em; }
+            .section-title { font-size: 2.4em; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#home" class="logo">Đảo Ước Mơ <span>夢想島</span></a>
+            <nav class="main-nav" id="main-nav">
+                <ul>
+                    <li><a href="#services">服務項目</a></li>
+                    <li><a href="#partners">合作夥伴</a></li>
+                    <li><a href="#tools">實用工具</a></li>
+                    <li><a href="#">文章專欄</a></li>
+                    <li><a href="#contact">聯絡我們</a></li>
+                </ul>
+            </nav>
+            <div style="display: flex; align-items: center;">
+                <div class="lang-switcher">
+                    <div class="selected-lang">VI</div>
+                    <ul>
+                        <li><a href="#">VI (Tiếng Việt)</a></li>
+                        <li><a href="#">ZH (繁體中文)</a></li>
+                        <li><a href="#">EN (English)</a></li>
+                    </ul>
+                </div>
+                <div class="menu-toggle" id="menu-toggle">☰</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container">
+                <h1>Cùng bạn kiến tạo tương lai trên Đảo Ước Mơ.</h1>
+                <p>夢想島是一個專業顧問品牌，提供關於在台留學、創業及生活的全面性協助與服務。 Hãy trở thành phiên bản tốt nhất của bản thân khi ở trên Đảo Ước Mơ.</p>
+                <a href="#contact" class="cta-button">立即免費諮詢 &raquo;</a>
+            </div>
+        </section>
+
+        <section id="services" class="section">
+            <div class="container">
+                <h2 class="section-title"><span>Dịch vụ của chúng tôi</span>我們的專業服務</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>協助越南人在台開辦事業</h3>
+                        <p>從投資人、新創家專案規劃到公司設立流程輔導，我們提供一站式服務，助您在台事業起步。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>協助越南人在台升學</h3>
+                        <p>無論是學士、碩士班申請，或是產學合作專班，我們為您規劃最適合的升學路徑。</p>
+                    </div>
+                    <div class="service-card">
+                        <h3>協助越南人在台職涯發展</h3>
+                        <p>提供專業白領、中階技術工作許可申請諮詢，並為技術人員規劃進修，拓展您的在台職涯。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="section section-light">
+            <div class="container">
+                <h2 class="section-title"><span>Đối tác của chúng tôi</span>我們的合作夥伴</h2>
+                <div class="partners-grid">
+                    <div class="partner-logo">
+                        <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">合作大學 A</text></svg>
+                    </div>
+                    <div class="partner-logo">
+                         <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">合作企業 B</text></svg>
+                    </div>
+                    <div class="partner-logo">
+                         <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">法律事務所 C</text></svg>
+                    </div>
+                    <div class="partner-logo">
+                         <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">會計師事務所 D</text></svg>
+                    </div>
+                     <div class="partner-logo">
+                         <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">合作學校 E</text></svg>
+                    </div>
+                     <div class="partner-logo">
+                         <svg viewBox="0 0 100 40" xmlns="http://www.w3.org/2000/svg"><text x="50" y="25" font-family="Arial, sans-serif" font-size="10" text-anchor="middle" fill="#999">合作機構 F</text></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="tools" class="section">
+            <div class="container">
+                 <h2 class="section-title"><span>Công cụ hữu ích</span>實用工具</h2>
+                 <div class="tools-container">
+                    <div class="tool-box" id="tax-calculator">
+                        <h3>發票稅額即時試算</h3>
+                        <div class="tax-calc-grid">
+                            <label for="sales-exclusive">銷售額 (未含稅)</label>
+                            <input type="text" id="sales-exclusive" placeholder="0">
+                            <span>元</span>
+                            
+                            <label for="tax-amount">稅額 (5%)</label>
+                            <input type="text" id="tax-amount" placeholder="0">
+                            <span>元</span>
+
+                            <label for="sales-inclusive">總計 (含稅)</label>
+                            <input type="text" id="sales-inclusive" placeholder="0">
+                            <span>元</span>
+                        </div>
+                        
+                        <div id="tax-results">
+                            <p>預估應繳營所稅: <strong id="corp-tax-result">0</strong> 元</p>
+                            <div class="disclaimer">
+                                本結果為初步估算，僅供參考。計算公式如下：<br>
+                                • <b>營業稅:</b> (銷售額 - 進項) x 5%。(本工具未計入進項)<br>
+                                • <b>營所稅:</b> 銷售額 x 6% (書審純益率) x 20% (營所稅稅率)。<br>
+                                實際稅務金額與可扣抵項目，請務必諮詢專業會計師。
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tool-box" id="faq">
+                        <h3>常見問答 (FAQ)</h3>
+                        <div class="faq-categories" id="faq-categories">
+                           <button class="active" data-category="general">Thủ tục chung</button>
+                           <button data-category="company">Mở công ty</button>
+                           <button data-category="status">Lao động & BHP</button>
+                        </div>
+                        <div id="faq-list">
+                            <!-- FAQ items will be loaded here by JavaScript -->
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section section-light">
+            <div class="container">
+                <h2 class="section-title"><span>Liên hệ với chúng tôi</span>聯絡我們</h2>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <h3>立即開始您的夢想島之旅</h3>
+                        <p>有任何問題嗎？或想進一步了解我們的服務？請隨時透過以下方式與我們聯繫，或直接填寫右側的諮詢表單，我們的專業顧問將盡快回覆您。</p>
+                        <ul>
+                            <li><strong>Email:</strong> <a href="mailto:daouocmoTW@gmail.com">daouocmoTW@gmail.com</a></li>
+                            <li><strong>公司電話:</strong> +886 7 969 2232</li>
+                            <li><strong>諮詢專線 (Huệ):</strong> +886 913 212 317</li>
+                            <li><strong>諮詢專線 (Anna):</strong> +886 908 158 500</li>
+                        </ul>
+                    </div>
+                    <div class="contact-form">
+                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfbQhhmDYU8zraPOqemspQAvj5utaDNtdBNL3jfwkC4hvUjxg/viewform?embedded=true" width="100%" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Đảo Ước Mơ 夢想島</h4>
+                    <p>💙 Tích cực 🤍 Chu đáo 💙 Chất lượng</p>
+                    <p>在夢想島，與你共創未來。</p>
+                    <p><strong>金灣家股份有限公司</strong><br>KIM WAN CHIA INTERNATIONAL CO.,LTD.<br>統編: 97609277</p>
+                </div>
+                <div class="footer-col">
+                    <h4>網站地圖</h4>
+                    <p><a href="#">關於我們</a></p>
+                    <p><a href="#services">服務項目</a></p>
+                    <p><a href="#partners">合作夥伴</a></p>
+                    <p><a href="#contact">聯絡我們</a></p>
+                </div>
+                <div class="footer-col">
+                    <h4>聯絡資訊</h4>
+                    <p>Email: <a href="mailto:daouocmoTW@gmail.com">daouocmoTW@gmail.com</a></p>
+                    <p>公司電話: +886 7 969 2232</p>
+                    <p>諮詢專線 (Huệ): +886 913 212 317</p>
+                    <p>諮詢專線 (Anna): +886 908 158 500</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2025 Đảo Ước Mơ. All Rights Reserved. | <a href="#" id="disclaimer-link">免責聲明</a>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="disclaimer-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close" id="modal-close-btn">&times;</span>
+            <div class="modal-body">
+                <h4>1. 免責聲明</h4>
+                <p>本網站所載的所有資料、商標、標誌、圖像、短片、聲音檔案、連結及其他資料等（以下簡稱「資料」），為精訊聯合會計師事務所（以下簡稱「本事務所」）業務所需之筆記，僅供參考之用，本事務所將會隨時更改資料，並由本事務所決定而不作另行通知。雖然本事務所已盡力確保本網站的資料準確性，但本事務所不會明示或隱含保證該等資料均為準確無誤。本事務所不會對任何錯誤或遺漏承擔責任。 本事務所不會對使用或任何人士使用本網站而引致任何損害（包括但不限於電腦病毒、系統固障、資料損失）承擔任何賠償。本網站可能會連結至其他機構所提供的網站，但這些網站並不是由本事務所所控制。本事務所不會對這些網站所顯示的內容作出任何保證或承擔任何責任。閣下如瀏覽這些網站，將要自己承擔後果。</p>
+                <h4>2. 版權</h4>
+                <p>本網站的所有資料屬本事務所及會計師本人專屬財產，均受知識產權法例及權利（包括但不限於保護版權的法例）所保障。根據此法例及權利，任何未經授權使用的資料均屬侵權行為。在未經本事務所明確同意下，本網站資料之全部或部份均不可被使用、複印、銷售、傳送、修改、發表、儲存或以其他方式利用作任何用途。</p>
+                <h4>3. 責任限制</h4>
+                <p>在任何情況下，本事務所並不須就閣下或任何人士由於直接或間接進入或使用本網站，並就此內容上或任何產品、資訊或服務，而招致的任何損失或損害負上任何責任（不論基于合約、侵權行為（包括疏忽）或其他方面的）。在不限制以上條文的一般性之原則及任何情況下，本事務所並不須就閣下進入或使用本網站的任何附帶引起、特殊或相應而生之任何種類的損害作出賠償，包括但不限於利潤損失、營業受阻、營業資料損失或其他經濟損失、人身傷害或死亡。</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            menuToggle.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+            });
+
+            // --- Enhanced Tax Calculator Logic ---
+            const salesExInput = document.getElementById('sales-exclusive');
+            const taxInput = document.getElementById('tax-amount');
+            const salesInInput = document.getElementById('sales-inclusive');
+            const corpTaxResult = document.getElementById('corp-tax-result');
+
+            let isCalculating = false;
+
+            function formatNumber(num) {
+                 // Use toLocaleString to add commas
+                return num.toLocaleString('en-US', { maximumFractionDigits: 0 });
+            }
+            
+            function cleanNumber(value) {
+                // Remove commas for calculation
+                return parseFloat(String(value).replace(/,/g, '')) || 0;
+            }
+
+            function calculateAll(sourceElement) {
+                if (isCalculating) return;
+                isCalculating = true;
+
+                const sourceId = sourceElement.id;
+                let salesEx = cleanNumber(salesExInput.value);
+                
+                if (sourceId === 'sales-exclusive') {
+                    // Value from sales-exclusive input
+                } else if (sourceId === 'tax-amount') {
+                    salesEx = cleanNumber(taxInput.value) / 0.05;
+                } else if (sourceId === 'sales-inclusive') {
+                    salesEx = cleanNumber(salesInInput.value) / 1.05;
+                }
+
+                const tax = salesEx * 0.05;
+                const salesIn = salesEx * 1.05;
+                const corpTax = salesEx * 0.06 * 0.20;
+
+                // Update values, avoiding update on the source element to prevent cursor jump
+                if (sourceId !== 'sales-exclusive') salesExInput.value = formatNumber(Math.round(salesEx));
+                if (sourceId !== 'tax-amount') taxInput.value = formatNumber(Math.round(tax));
+                if (sourceId !== 'sales-inclusive') salesInInput.value = formatNumber(Math.round(salesIn));
+                corpTaxResult.textContent = formatNumber(Math.round(corpTax));
+
+                isCalculating = false;
+            }
+            
+            [salesExInput, taxInput, salesInInput].forEach(input => {
+                input.addEventListener('input', function() {
+                    calculateAll(this);
+                });
+                
+                input.addEventListener('focus', function() {
+                   // When user focuses, remove commas for easier editing
+                   this.value = cleanNumber(this.value) === 0 ? '' : cleanNumber(this.value);
+                });
+
+                input.addEventListener('blur', function() {
+                    // When user leaves, format the number with commas
+                    const numValue = cleanNumber(this.value);
+                    this.value = formatNumber(numValue);
+                    // Recalculate everything based on the final blurred value to ensure consistency
+                    calculateAll(this);
+                });
+            });
+
+
+            // Interactive FAQ
+            const faqData = {
+                general: [
+                    { q: 'Thủ tục cần chuẩn bị giấy tờ gì?', a: 'Giấy tờ cần chuẩn bị bao gồm giấy tờ, kinh nghiệm cá nhân và quan trọng nhất là bản kế hoạch kinh doanh thuyết phục và xứng đáng để được bộ kinh tế cấp phép mở công ty. Tuy nhiên, các thủ tục giấy tờ bên công ty đều hỗ trợ, nên không cần lo lắng. Chỉ cần phối hợp để làm là được.' },
+                    { q: 'Có khó không?', a: 'Không khó, những không đảm bảo 100% thông qua, vì phải phụ thuộc vào nền tảng, kinh nghiêm, kế hoạch kinh doanh và số vốn đầu tư của mỗi người. Loại hình công ty cũng rất quan trọng, nên mở các dạng ngành nghề hot hiện nay, ví du: Công ty marketing, cố vấn ….' },
+                    { q: 'Có tự làm được không?', a: 'Qui trình làm khá phức tạp và nhiều giấy tờ cần chuẩn bị, tự làm sẽ mất rất nhiều thời gian và khả năng qua không cao.' },
+                    { q: 'Chi phí hết bao nhiêu?', a: 'Chi phí tuỳ thuộc vào nền tảng của mỗi cá nhân. Ví dụ ở Việt nam mở chi phí sẽ khác so với người ở Đài Loan mở. Nếu muốn được tư vấn chi tiết, có thể hẹn lịch họp online để tư vấn kỹ hơn.' }
+                ],
+                company: [
+                    { q: 'Khoảng bao nhiêu tiền để em chuẩn bị?', a: 'Chi phí thủ tục giấy tờ khoảng 18-20 vạn đài tệ. Vốn đầu tư từ 50 vạn trở lên, càng cao càng dễ được thông qua.' },
+                    { q: 'Mở công ty xong cần chi trả những loại phí gì? Bao nhiêu tiền?', a: 'Sau khi thành lập công ty, cần chi trả những chi phí cố định như: thuế, mặt bằng, bảo hiểm cho giám đốc. Khoảng 9,000 tệ/ tháng' },
+                    { q: 'Có bảo lãnh được người thân không?', a: 'Có thể bảo lãnh vk-ck sang định cư lâu dài theo hạn cư trú của mình.' },
+                    { q: 'Mở công ty xong có thể tuyển dụng người từ Việt Nam qua Đài không?', a: 'Phải là công ty môi giới mới được tuyển người từ Vn qua đài, tuy nhiên, có thể tuyển chức vị giám đốc cho công ty. Với điều kiện là sinh viên tốt nghiệp ở Đài Loan, có chuyên ngành phù hợp.' },
+                    { q: 'Không có mặt bằng thì làm thế nào?', a: 'Có thể thuê 商業中心với mức phí khoảng 2,000 tệ/ tháng. Sau này có thể thay đổi địa chỉ' }
+                ],
+                status: [
+                    { q: 'Thân phận là Lao động có thể làm giấy tờ mở công ty không?', a: 'Có, nhưng lưu ý nếu là dạng xkld sau này cần về việt nam làm lại Visa. Quá trình và giấy tờ làm visa bên công ty sẽ lo. Quan trọng chuẩn bị phần phỏng vấn với Đại sử quán Việt nam' },
+                    { q: 'Bất hợp pháp có thể làm visa dạng này không?', a: 'Không' },
+                    { q: 'Nếu ở Đài Loan, đi làm không đóng thuế, thì làm thế nào để chứng minh nguồn vốn minh bạch', a: 'Có nhiều cách khác nhau để chứng minh, sau này nếu quyết định làm, bên công ty sẽ hỗ trợ và hướng dẫn. Vì hiện nay, bên công ty mình có hỗ trợ nhiều trườngIPE hợp khác nhau và đều thông qua, nên không cần lo lắng quá' },
+                    { q: 'Có bảo lãnh được lao động bất hợp pháp không?', a: 'Không' }
+                ]
+            };
+
+            const faqCategoriesContainer = document.getElementById('faq-categories');
+            const faqListContainer = document.getElementById('faq-list');
+
+            function renderFAQs(category) {
+                faqListContainer.innerHTML = '';
+                faqData[category].forEach(item => {
+                    const faqItem = document.createElement('div');
+                    faqItem.className = 'faq-item';
+                    faqItem.innerHTML = `<div class="faq-question">${item.q}</div><div class="faq-answer"><p>${item.a}</p></div>`;
+                    faqListContainer.appendChild(faqItem);
+                });
+            }
+
+            faqCategoriesContainer.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    faqCategoriesContainer.querySelector('.active').classList.remove('active');
+                    e.target.classList.add('active');
+                    renderFAQs(e.target.dataset.category);
+                }
+            });
+
+            faqListContainer.addEventListener('click', (e) => {
+                 if (e.target.classList.contains('faq-question')) {
+                    const currentActive = faqListContainer.querySelector('.faq-item.active');
+                    const clickedItem = e.target.parentElement;
+                    
+                    if (currentActive && currentActive !== clickedItem) {
+                        currentActive.classList.remove('active');
+                    }
+                    clickedItem.classList.toggle('active');
+                 }
+            });
+
+            renderFAQs('general');
+
+            // Disclaimer Modal
+            const modal = document.getElementById('disclaimer-modal');
+            const disclaimerLink = document.getElementById('disclaimer-link');
+            const closeBtn = document.getElementById('modal-close-btn');
+
+            disclaimerLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                modal.style.display = 'block';
+            });
+            
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target == modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
